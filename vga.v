@@ -1,8 +1,8 @@
 module vga (
-input clk,
-input rst,
-output h_sync,
-output v_sync,
+input clk, //pin L1
+input rst, //pin R22
+output h_sync, //pin A11
+output v_sync, //pin B11
 output reg [3:0] red,	//red vga output
 output reg [3:0] green, //green vga output
 output reg [3:0] blue	//blue vga output
@@ -29,7 +29,7 @@ reg [10:0] v_cnt;
 always @(posedge clk or negedge rst)
 begin
 
-	if (~rst)
+	if (~rst) 
 	begin
 		h_cnt <= 0;
 		v_cnt <= 0;
@@ -53,8 +53,9 @@ begin
 	end
 end
 
-assign h_sync = (h_cnt < h_visible_area+h_front_porch ) ? 0:1;
-assign v_sync = (v_cnt < v_visible_area+v_front_porch ) ? 0:1;
+
+assign h_sync = (h_cnt < (h_visible_area + h_front_porch) || h_cnt > (h_visible_area + h_front_porch+ h_pulse)) ? 0:1;
+assign v_sync = (v_cnt < (v_visible_area + v_front_porch) || v_cnt > (v_visible_area + v_front_porch+ v_pulse)) ? 0:1;
 
 assign display_en =(h_cnt < h_visible_area && v_cnt < v_visible_area ) ? 1:0;
 
