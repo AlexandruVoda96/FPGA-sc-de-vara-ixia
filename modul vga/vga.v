@@ -4,8 +4,7 @@ input rst, //pin R22
 output h_sync, //pin A11
 output v_sync, //pin B11
 output display_en,
-output x_pos,
-output y_pos
+output [10:0] x_pos,y_pos
 );
 parameter h_visible_area=800,
 			 h_pixels =1040,
@@ -53,42 +52,9 @@ end
 assign h_sync = (h_cnt < (h_visible_area + h_front_porch) || h_cnt > (h_visible_area + h_front_porch+ h_pulse)) ? 0:1;
 assign v_sync = (v_cnt < (v_visible_area + v_front_porch) || v_cnt > (v_visible_area + v_front_porch+ v_pulse)) ? 0:1;
 assign display_en =(h_cnt < h_visible_area && v_cnt < v_visible_area ) ? 1:0;
-//assign x_pos = (display_en) ? h_cnt:11'bz;
-//assign y_pos = (display_en) ? v_cnt:11'bz;
-//always@(*) begin
-//	if(display_en) begin
-//	if(h_cnt<399 && v_cnt < 299)begin
-//		red=3'b111;
-//		green=2'b00;
-//		blue=3'b000;
-//		end
-//	else if(h_cnt>399 && v_cnt < 299)begin
-//		red=3'b000;
-//		green=2'b00;
-//		blue=3'b111;
-//		end
-//	else if(h_cnt<399 && v_cnt > 299)begin
-//		red=3'b000;
-//		green=2'b11;
-//		blue=3'b000;
-//		end
-//	else if(h_cnt>399 && v_cnt > 299)begin
-//		red=3'b111;
-//		green=2'b11;
-//		blue=3'b111;
-//		end
-//	else 
-//		begin
-//		red=3'b000;
-//		green=2'b00;
-//		blue=3'b000;
-//		end
-//	end
-//
-//	else begin
-//		red=3'bzzz;
-//		green=2'bzz;
-//		blue=3'bzzz;
-//	end
-//end
+assign x_pos = (display_en) ? h_cnt:11'bz;
+assign y_pos = (display_en) ? v_cnt:11'bz;
+//assign x_pos = h_cnt;
+//assign y_pos = v_cnt;
+
 endmodule
