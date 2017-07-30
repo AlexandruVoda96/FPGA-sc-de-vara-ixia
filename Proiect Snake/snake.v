@@ -13,7 +13,7 @@ wire snake_c,apple_c,border_c,win_c;
 reg [6:0] points_counter=0;
 reg[25:0]update;
 reg border;	
-reg [10:0]apple_x,apple_y;
+reg [10:0]apple_x=40,apple_y=40;
 reg [10:0]snake_x[0:31];
 reg [10:0]snake_y[0:31];
 reg snake_body;
