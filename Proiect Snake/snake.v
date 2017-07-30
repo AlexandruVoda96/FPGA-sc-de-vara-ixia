@@ -167,24 +167,24 @@ always@(posedge clk)
 			end
 	//background
 		else begin
-		red=4'hF;
-		green=4'hF;
+		red=4'h6;
+		green=4'h3;
 		blue=4'h0;
 		for(m=0;m<=600;m=m+40)begin  
 			for(n=0;n<=800;n=n+40)begin
 		if((y_pos>=m && y_pos<m+20) &&(x_pos>=n && x_pos<n+20))begin
-		red=4'hF;
-		green=4'hF;
-		blue=4'hF;
+		red=4'h9;
+		green=4'h6;
+		blue=4'h3;
 		end
 	end
 end
 		for(m=20;m<=600;m=m+40)begin 
 			for(n=20;n<=800;n=n+40)begin
 		if((y_pos>=m && y_pos<m+20) &&(x_pos>=n && x_pos<n+20))begin
-		red=4'hF;
-		green=4'hF;
-		blue=4'hF;
+		red=4'h9;
+		green=4'h6;
+		blue=4'h3;
 		end
 	end
 end
